@@ -11,6 +11,7 @@ Kavya-Kanaja is an offline-first Android app for learning Kannada literature wit
 - AI-ready `AiLiteratureClient` with a local fallback implementation.
 - ExoPlayer wrapper for future recitation playback.
 - 50 generated sample poems and 10 poet profiles seeded offline.
+- Progress widgets, daily challenge card, mood-based discovery chips, and achievement badges for a stronger demo experience.
 
 ## Setup
 

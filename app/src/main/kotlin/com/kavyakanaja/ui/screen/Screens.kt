@@ -192,6 +192,8 @@ fun HomeScreen(navController: NavHostController, viewModel: AppViewModel) {
                     }
                     Box(Modifier.size(48.dp).clip(CircleShape).background(MaterialTheme.colorScheme.secondary), contentAlignment = Alignment.Center) { Text("ಕ", color = Color.White) }
                 }
+                SectionTitle("Your Progress")
+                ProgressRow(poemsCompleted = state.poems.take(18).size, favorites = state.favorites.size, xp = 1280)
                 SectionTitle("Poem of the Day")
                 val poem = state.poems.firstOrNull()
                 if (poem != null) GradientPanel(Modifier.fillMaxWidth().clickable { navController.navigate(Screen.PoemDetail.create(poem.id)) }) {
@@ -200,8 +202,11 @@ fun HomeScreen(navController: NavHostController, viewModel: AppViewModel) {
                         Text(poem.meaning, color = Color.White.copy(alpha = 0.9f), modifier = Modifier.padding(top = 10.dp))
                     }
                 }
+                DailyChallengeCard()
                 SectionTitle("Categories")
                 CategoryRow(listOf("Bhakti", "Nature", "Love", "Philosophy", "Patriotism", "Classical Kannada"))
+                SectionTitle("Choose Your Mood")
+                CategoryRow(listOf("Calm", "Inspired", "Focused", "Devotional", "Curious"))
                 SectionTitle("Continue Reading")
             }
             items(state.poems.take(5)) { poem ->
@@ -213,6 +218,45 @@ fun HomeScreen(navController: NavHostController, viewModel: AppViewModel) {
             items(state.poems.drop(5).take(4)) { poem ->
                 PoemCard(poem, onClick = { navController.navigate(Screen.PoemDetail.create(poem.id)) }, modifier = Modifier.fillMaxWidth().padding(bottom = 10.dp))
             }
+        }
+    }
+}
+
+@Composable
+private fun ProgressRow(poemsCompleted: Int, favorites: Int, xp: Int) {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+        StatTile("Streak", "7d", Modifier.weight(1f))
+        StatTile("Read", "$poemsCompleted", Modifier.weight(1f))
+        StatTile("Saved", "$favorites", Modifier.weight(1f))
+        StatTile("XP", "$xp", Modifier.weight(1f))
+    }
+}
+
+@Composable
+private fun StatTile(label: String, value: String, modifier: Modifier = Modifier) {
+    Card(
+        modifier = modifier,
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)
+    ) {
+        Column(Modifier.padding(12.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(value, style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            Text(label, style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+    }
+}
+
+@Composable
+private fun DailyChallengeCard() {
+    Card(
+        Modifier.fillMaxWidth().padding(top = 14.dp),
+        shape = RoundedCornerShape(8.dp),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.primaryContainer)
+    ) {
+        Column(Modifier.padding(16.dp)) {
+            Text("Daily Challenge", style = MaterialTheme.typography.titleLarge, fontWeight = FontWeight.Bold)
+            Text("Read one poem, save one favorite, and ask Kavya AI one question.", modifier = Modifier.padding(top = 6.dp))
+            Text("+120 XP", color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 8.dp))
         }
     }
 }
@@ -427,8 +471,38 @@ fun ProfileScreen(viewModel: AppViewModel) {
                 SectionTitle("Analytics")
                 Text("Favorite genres: Bhakti, Nature, Patriotism")
                 Text("Daily challenge: Read one poem and ask Kavya AI one question.", modifier = Modifier.padding(top = 8.dp))
+                SectionTitle("Achievements")
+                AchievementList()
                 SectionTitle("About App")
                 Text("Kavya-Kanaja is an offline-first Kannada literature learning app with AI-ready architecture.")
+            }
+        }
+    }
+}
+
+@Composable
+private fun AchievementList() {
+    val achievements = listOf(
+        "First Recitation" to "Listen to your first poem",
+        "Word Explorer" to "Tap 10 difficult words",
+        "Kannada Streak" to "Read for 7 days",
+        "Poet Scholar" to "Explore 5 poet biographies"
+    )
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        achievements.forEachIndexed { index, achievement ->
+            Card(shape = RoundedCornerShape(8.dp), colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surfaceVariant)) {
+                Row(Modifier.fillMaxWidth().padding(14.dp), verticalAlignment = Alignment.CenterVertically) {
+                    Box(
+                        Modifier.size(36.dp).clip(CircleShape).background(if (index < 2) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.outline),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(if (index < 2) "Y" else "-", color = Color.White, fontWeight = FontWeight.Bold)
+                    }
+                    Column(Modifier.padding(start = 12.dp)) {
+                        Text(achievement.first, fontWeight = FontWeight.Bold)
+                        Text(achievement.second, style = MaterialTheme.typography.bodyMedium)
+                    }
+                }
             }
         }
     }
