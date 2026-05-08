@@ -1,0 +1,6 @@
+{
+  "poems_count": 50,
+  "poets_count": 10,
+  "note": "The app seeds 50 offline sample poems from SampleData.kt. Replace this file with curated public-domain Kannada poems before Play Store release.",
+  "categories": ["Bhakti", "Nature", "Love", "Philosophy", "Patriotism", "Classical Kannada"]
+}

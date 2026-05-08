@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Minimalist Colors - Clay & Ink Blue -->
+    <color name="primary">#B86F38</color>
+    <color name="primary_light">#D9A06F</color>
+    <color name="primary_dark">#8C552B</color>
+
+    <color name="secondary">#364A63</color>
+    <color name="secondary_light">#AAB6C4</color>
+    <color name="secondary_dark">#202B38</color>
+
+    <!-- Tertiary - Ivory -->
+    <color name="tertiary">#FAF7F0</color>
+    <color name="tertiary_dark">#E8E5DE</color>
+
+    <!-- Neutral Colors -->
+    <color name="dark_charcoal">#202124</color>
+    <color name="light_background">#FAF7F0</color>
+    <color name="dark_background">#111315</color>
+
+    <!-- Semantic Colors -->
+    <color name="error">#B3261E</color>
+    <color name="error_container">#F9DEDC</color>
+
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+
+    <!-- Surfaces -->
+    <color name="surface_light">#F1ECE2</color>
+    <color name="surface_dark">#1B1D1F</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary_light">#202124</color>
+    <color name="text_primary_dark">#FFFFFF</color>
+    <color name="text_secondary_light">#666666</color>
+    <color name="text_secondary_dark">#CCCCCC</color>
+    <color name="text_hint">#999999</color>
+
+    <!-- Gradient Colors -->
+    <color name="gradient_start">#202B38</color>
+    <color name="gradient_end">#364A63</color>
+
+    <!-- Special Colors -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+</resources>
