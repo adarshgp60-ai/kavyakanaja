@@ -19,6 +19,33 @@ Kavya-Kanaja is an offline-first Android app for learning Kannada literature wit
 2. Let Gradle sync dependencies from Google and Maven Central.
 3. Run the `app` configuration on an emulator or device.
 
+## PowerShell Run Commands
+
+Build the debug APK:
+
+```powershell
+cd "D:\cursor file\Kavya kanaja mind matrix"
+.\gradlew.bat :app:assembleDebug --no-daemon --max-workers=1
+```
+
+Install on a running emulator or connected Android phone:
+
+```powershell
+.\gradlew.bat :app:installDebug --no-daemon --max-workers=1
+```
+
+Launch after install:
+
+```powershell
+& "$env:LOCALAPPDATA\Android\Sdk\platform-tools\adb.exe" shell monkey -p com.kavyakanaja -c android.intent.category.LAUNCHER 1
+```
+
+Generated APK:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
 ## API Setup
 
 The current build uses `LocalAiLiteratureClient` so it works without network keys. To add Gemini or OpenAI:
@@ -50,6 +77,13 @@ Add screenshots here after running on emulator:
 - Poem Detail
 - Poet Corner
 - Profile
+
+## Submission Documents
+
+- `FINAL_SUBMISSION.md` - concise final submission summary.
+- `PROJECT_REPORT.md` - academic-style report with objectives, modules, architecture, and outcomes.
+- `USER_MANUAL.md` - how a user runs and uses the app.
+- `TEST_PLAN.md` - test cases and verification checklist.
 
 ## Future Improvements
 
